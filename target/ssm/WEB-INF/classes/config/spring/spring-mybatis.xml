@@ -30,7 +30,7 @@
         <!--配置获取连接等待的超时时间-->
         <property name="maxWait" value="60000"/>
 
-        <
+
         <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
         <property name="timeBetweenEvictionRunsMillis" value="60000" />
 
@@ -54,18 +54,17 @@
     <!--spring与mybatis的整合-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:config/mybatis/sqlMapperConfig.xml"/>
         <!--自动扫描mapper中的xml-->
-        <property name="mapperLocations" value="classpath:mapper"/>
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
     </bean>
 
     <!--dao接口所在的包-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.zgb.dao"/>
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryBeanName"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 
-    <!--事务管理-->
-    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" value="dataSource"/>
-    </bean>
+    <!--shiro的配置文件-->
+    <import resource="spring-shiro.xml"/>
 </beans>

@@ -33,6 +33,33 @@
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.9.1" />
           <element id="library" level="project" name="Maven: org.freemarker:freemarker:2.3.20" />
           <element id="library" level="project" name="Maven: com.itextpdf:itextpdf:5.5.11" />
+          <element id="library" level="project" name="Maven: org.apache.lucene:lucene-core:7.0.1" />
+          <element id="library" level="project" name="Maven: org.apache.lucene:lucene-queryparser:7.0.1" />
+          <element id="library" level="project" name="Maven: org.apache.lucene:lucene-queries:7.0.1" />
+          <element id="library" level="project" name="Maven: org.apache.lucene:lucene-sandbox:7.0.1" />
+          <element id="library" level="project" name="Maven: org.apache.lucene:lucene-analyzers-common:7.0.1" />
+          <element id="library" level="project" name="Maven: org.apache.lucene:lucene-analyzers-smartcn:7.0.1" />
+          <element id="library" level="project" name="Maven: org.apache.lucene:lucene-highlighter:7.0.1" />
+          <element id="library" level="project" name="Maven: org.apache.lucene:lucene-join:7.0.1" />
+          <element id="library" level="project" name="Maven: org.apache.lucene:lucene-memory:7.0.1" />
+          <element id="library" level="project" name="Maven: org.apache.shiro:shiro-core:1.4.0" />
+          <element id="library" level="project" name="Maven: org.apache.shiro:shiro-lang:1.4.0" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.8.0-alpha2" />
+          <element id="library" level="project" name="Maven: org.apache.shiro:shiro-cache:1.4.0" />
+          <element id="library" level="project" name="Maven: org.apache.shiro:shiro-crypto-hash:1.4.0" />
+          <element id="library" level="project" name="Maven: org.apache.shiro:shiro-crypto-core:1.4.0" />
+          <element id="library" level="project" name="Maven: org.apache.shiro:shiro-crypto-cipher:1.4.0" />
+          <element id="library" level="project" name="Maven: org.apache.shiro:shiro-config-core:1.4.0" />
+          <element id="library" level="project" name="Maven: org.apache.shiro:shiro-config-ogdl:1.4.0" />
+          <element id="library" level="project" name="Maven: org.apache.shiro:shiro-event:1.4.0" />
+          <element id="library" level="project" name="Maven: commons-beanutils:commons-beanutils:1.9.3" />
+          <element id="library" level="project" name="Maven: commons-collections:commons-collections:3.2.2" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-log4j12:1.8.0-alpha2" />
+          <element id="library" level="project" name="Maven: log4j:log4j:1.2.17" />
+          <element id="library" level="project" name="Maven: org.apache.shiro:shiro-web:1.4.0" />
+          <element id="library" level="project" name="Maven: org.apache.shiro:shiro-spring:1.4.0" />
+          <element id="library" level="project" name="Maven: com.github.axet:kaptcha:0.0.9" />
+          <element id="library" level="project" name="Maven: com.jhlabs:filters:2.0.235" />
         </element>
       </element>
       <element id="directory" name="META-INF">
