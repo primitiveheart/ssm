@@ -33,4 +33,6 @@
 # captcha(japtcha and kaptcha) 验证码
 #### kaptcha生成过程
  1. 在xml在配置
+ 2. 生成验证码
+ 3. 在html引入
 # 中文乱码（get 和 post）解决
