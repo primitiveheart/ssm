@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zgb.dao.T_userDao">
+    <resultMap id="result" type="t_user">
+        <result property="id" column="id"/>
+        <result property="userName" column="userName"/>
+        <result property="password" column="password"/>
+        <result property="roleId" column="roleId"/>
+    </resultMap>
+
+    <sql id="column_list">
+        id, userName, password, roleId
+    </sql>
+
+    <select id="findUserByUsername" parameterType="String" resultMap="result">
+        SELECT <include refid="column_list"/> FROM t_user WHERE userName=#{userName}
+    </select>
+
+    <select id="findRoles" parameterType="String" resultType="String">
+        SELECT r.roleName FROM t_user u, t_role r WHERE u.roleId = r.id and u.userName = #{userName}
+    </select>
+
+    <select id="findPermissions" parameterType="String" resultType="String">
+        SELECT p.permissionName  FROM t_user u,t_role r, t_permission p
+        WHERE u.roleId = r.id and p.roleId = r.id and u.userName = #{userName}
+    </select>
+</mapper>

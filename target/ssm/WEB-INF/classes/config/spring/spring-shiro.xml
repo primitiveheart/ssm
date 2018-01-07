@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+    <!--配置自定义的realm-->
+    <bean id="myReaml" class="com.zgb.shiro.MyRealm"></bean>
+
+    <!--安全管理器-->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <!--注入自定义的realm-->
+        <property name="realm" ref="myReaml"/>
+        <!--记住我-->
+        <property name="rememberMeManager" ref="rememberMeManager"/>
+    </bean>
+
+    <!--shiro过滤器的核心-->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <!--shiro的核心安全接口，这个属性必须要-->
+        <property name="securityManager" ref="securityManager"/>
+        <!--身份认证失败，则跳转到登录页面的配置-->
+        <property name="loginUrl" value="login.jsp"/>
+        <!--权限认证失败，则跳转到指定页面-->
+        <property name="unauthorizedUrl" value="nopower.jsp"/>
+        <property name="filters">
+            <map>
+                <!--启用验证码验证-->
+                <entry key="authc" value-ref="captchaFormAuthenticationFilter"></entry>
+            </map>
+        </property>
+        <!--shiro连接约束配置，即过滤链的定义-->
+        <property name="filterChainDefinitions">
+            <value>
+                <!--anon表示匿名访问，不需要认证及授权-->
+                /loginAdmin.html=anon
+                /kaptcha.jpg=anon
+                <!--authc表示需要认证 没有进行身份认证是不能进行访问的-->
+                /admin*.html=authc
+                /student.html=roles[teacher]
+                /teacher.html=perms["user:create"]
+
+            </value>
+        </property>
+    </bean>
+
+    <bean id="captchaFormAuthenticationFilter" class="com.zgb.filter.CaptchaFormAuthenticationFilter">
+        <property name="usernameParam" value="userName"/>
+        <property name="passwordParam" value="password"/>
+    </bean>
+
+    <bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
+        <property name="cookie" ref="rememberMeCookie"/>
+    </bean>
+
+    <bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <!--rememberMe是cookie的名字-->
+        <constructor-arg value="rememberMe"/>
+        <!--记住cookie的生效时间30天-->
+        <property name="maxAge" value="2592000"/>
+    </bean>
+
+    <!--保证实现是shiro内部的lifecycle函数的bean的执行-->
+    <!--开启shiro的注解-->
+    <!--
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"></bean>
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor"></bean>
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+        <property name="securityManager" ref="securityManager"/>
+    </bean>
+    -->
+
+    <!--配置kaptcha验证码-->
+    <bean id="kaptchaProducter" class="com.google.code.kaptcha.impl.DefaultKaptcha">
+        <property name="config">
+            <bean class="com.google.code.kaptcha.util.Config">
+                <constructor-arg type="java.util.Properties">
+                    <props>
+                        <!-- 图片边框 -->
+                        <prop key="kaptcha.border">no</prop>
+                        <!-- 图片宽度 -->
+                        <prop key="kaptcha.image.width">95</prop>
+                        <!-- 图片高度 -->
+                        <prop key="kaptcha.image.height">45</prop>
+                        <!-- 验证码背景颜色渐变，开始颜色 -->
+                        <prop key="kaptcha.background.clear.from">248,248,248</prop>
+                        <!-- 验证码背景颜色渐变，结束颜色 -->
+                        <prop key="kaptcha.background.clear.to">248,248,248</prop>
+                        <!-- 验证码的字符 -->
+                        <prop key="kaptcha.textproducer.char.string">0123456789abcdefghijklmnopqrstuvwxyz</prop>
+                        <!-- 验证码字体颜色 -->
+                        <prop key="kaptcha.textproducer.font.color">0,0,255</prop>
+                        <!-- 验证码的效果，水纹 -->
+                        <prop key="kaptcha.obscurificator.impl">com.google.code.kaptcha.impl.WaterRipple</prop>
+                        <!-- 验证码字体大小 -->
+                        <prop key="kaptcha.textproducer.font.size">35</prop>
+                        <!-- 验证码字数 -->
+                        <prop key="kaptcha.textproducer.char.length">4</prop>
+                        <!-- 验证码文字间距 -->
+                        <prop key="kaptcha.textproducer.char.space">2</prop>
+                        <!-- 验证码字体 -->
+                        <prop key="kaptcha.textproducer.font.names">new Font("Arial", 1, fontSize), new Font("Courier", 1, fontSize)</prop>
+                        <!-- 不加噪声 -->
+                        <prop key="kaptcha.noise.impl">com.google.code.kaptcha.impl.NoNoise</prop>
+                    </props>
+                </constructor-arg>
+            </bean>
+        </property>
+    </bean>
+
+</beans>
