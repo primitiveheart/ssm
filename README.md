@@ -14,9 +14,20 @@
   freemarker
 - shiro相关的包
  shiro-core shiro-web shiro-spring
+- kaptcha相关的包
+ kaptcha
 #### web.xml编写
 前端控制器(DispatcherServlet)，用于拦截所有的请求，改变默认加载springmvc.xml
 #### springmvc.xml 
+# js
+#### jquery ui
+#### jquery supersized
+需要的supersized.js和supersized.css和自己编写supersized-init.js
+1. 自动调整等比例图片并充满整个浏览器屏幕
+2. 循环展示图片，支持滑动和淡出淡入等多种图片切换效果
+3. 导航按钮，支持键盘方向键导航（未实现）
+# css
+
 # sso（single sign on）单点登录系统
 # apache shiro 权限管理
 # captcha(japtcha and kaptcha) 验证码
