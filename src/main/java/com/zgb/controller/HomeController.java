@@ -13,4 +13,14 @@ public class HomeController {
     public String home(){
         return "test";
     }
+
+    @RequestMapping("modalLogin.html")
+    public String modaleLogin(){
+        return "modal";
+    }
+
+    @RequestMapping("popupDialog.html")
+    public String popupDialog(){
+        return "popupdialog";
+    }
 }
