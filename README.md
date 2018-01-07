@@ -31,4 +31,6 @@
 # sso（single sign on）单点登录系统
 # apache shiro 权限管理
 # captcha(japtcha and kaptcha) 验证码
+#### kaptcha生成过程
+ 1. 在xml在配置
 # 中文乱码（get 和 post）解决
