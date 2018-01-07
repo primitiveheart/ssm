@@ -1,20 +1,20 @@
 # ssm(springmvc + spring + mybatis) 环境搭建
 #### maven 相关jar的引入
--  主要相关spring的包，6个主要的相关包
+-  主要相关spring的包，6个主要的相关包<br>
    Spring-core、spring-context、spring-web、spring-beans、spring-tx、spring-test、spring-context-support
--  springmvc包
+-  springmvc包<br>
    spring-webmvc
-- spring整合数据库需要的包
+- spring整合数据库需要的包<br>
   spring-mybatis,spring-jdbc,druid(连接池)
-- mysql相关的包
+- mysql相关的包<br>
   mysql-connector-java, mybatis
-- 格式化对象
+- 格式化对象<br>
   fastjson, jackson-annotations, jackson-databind, jackson-core
-- freemarker 的模板语言
+- freemarker 的模板语言<br>
   freemarker
-- shiro相关的包
+- shiro相关的包<br>
  shiro-core shiro-web shiro-spring
-- kaptcha相关的包
+- kaptcha相关的包<br>
  kaptcha
 #### web.xml编写
 前端控制器(DispatcherServlet)，用于拦截所有的请求，改变默认加载springmvc.xml
