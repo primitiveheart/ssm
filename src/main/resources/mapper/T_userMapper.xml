@@ -24,4 +24,8 @@
         SELECT p.permissionName  FROM t_user u,t_role r, t_permission p
         WHERE u.roleId = r.id and p.roleId = r.id and u.userName = #{userName}
     </select>
+
+    <select id="findAllUsers" resultMap="result">
+        SELECT <include refid="column_list"/> FROM t_user
+    </select>
 </mapper>
