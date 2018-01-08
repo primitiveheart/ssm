@@ -28,7 +28,8 @@
 3. 导航按钮，支持键盘方向键导航（未实现）
 #### jquery ztree
 ztree 树插件
-   实现了增加节点，删除节点，修改节点（重命名），实现了同级拖拽
+   实现了增加节点，删除节点，修改节点（重命名），实现了同级拖拽<br>
+   [具体看ztree api和demo介绍](http://www.treejs.cn/v3/main.php#_zTreeInfo)
 # css
 
 # sso（single sign on）单点登录系统
