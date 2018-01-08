@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding= "UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zgb.mapper.LibraryMapper">
+    <resultMap id="BaseResultMap" type="library">
+        <result column="id" property="id"/>
+        <result column="pid" property="pid"/>
+        <result column="name" property="name"/>
+        <result column="create_time" property="create_time"/>
+        <result column="update_time" property="update_time"/>
+        <result column="is_delete" property="is_delete"/>
+        <result column="update_user" property="update_user"/>
+        <result column="create_user" property="create_user"/>
+        <result column="level_id" property="level_id"/>
+        <result column="order_id" property="order_id"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, pid , name, create_time, update_time, is_delete, update_user, create_user, level_id, order_id
+    </sql>
+
+    <select id="findLibraryById" parameterType="String" resultType="Integer">
+        SELECT count(*) FROM onair_vms_library WHERE is_delete = 1 and id = #{id}
+    </select>
+
+    <select id="findLastLibrary" parameterType="Library" resultType="Integer">
+        SELECT Max(order_id) as order_id FROM onair_vms_library WHERE pid = #{pid}
+    </select>
+
+    <select id="findAllLibrary" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/> FROM onair_vms_library WHERE is_delete = 1 ORDER BY order_id
+    </select>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="String">
+        SELECT <include refid="Base_Column_List"/> FROM onair_vms_library WHERE id = #{id}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="String">
+        UPDATE onair_vms_library set is_delete = 0 WHERE id = #{id}
+    </delete>
+
+    <insert id="insert" parameterType="Library">
+        INSERT INTO onair_vms_library (id, pid, name, create_time, update_time,
+        is_delete, update_user, create_user, level_id, order_id) VALUES (#{id}, #{pid}, #{name},
+         #{create_time}, #{update_time}, #{is_delete}, #{update_user}, #{create_user}, #{level_id}, #{order_id})
+    </insert>
+
+    <update id="updateByPrimatyKey" parameterType="Library">
+        UPDATE onair_vms_library set pid = #{pid}, name = #{name}, create_time = #{create_time},
+        update_time = #{update_time}, is_delete = #{id_delete}, update_user = #{update_user}, create_user = #{cteate_user},
+        level_id = #{level_id}, order_id = #{order_id}
+    </update>
+
+    <update id="updateOrderId" parameterType="Library">
+        UPDATE onair_vms_library
+        <set>
+            update_time = #{update_time},
+            update_user = #{update_user},
+            order_id = #{order_id}
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <select id="findLibraryListByOrderId" resultMap="BaseResultMap" parameterType="Map">
+        SELECT <include refid="Base_Column_List"/>
+        FROM onair_vms_library
+        WHERE order_id BETWEEN #{order_id} and #{target_order_id} and pid = #{pid}
+    </select>
+</mapper>

@@ -1,6 +1,6 @@
 package com.zgb.shiro;
 
-import com.zgb.dao.T_userDao;
+import com.zgb.mapper.T_userMapper;
 import com.zgb.entity.T_user;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -20,14 +20,14 @@ import java.util.Set;
 public class MyRealm extends AuthorizingRealm {
 
     @Autowired
-    private T_userDao t_userDao;
+    private T_userMapper t_userMapper;
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         String username = principalCollection.getPrimaryPrincipal().toString();
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-        Set<String> roleName = t_userDao.findRoles(username);
-        Set<String> permissions = t_userDao.findPermissions(username);
+        Set<String> roleName = t_userMapper.findRoles(username);
+        Set<String> permissions = t_userMapper.findPermissions(username);
         info.setRoles(roleName);
         info.setStringPermissions(permissions);
         return info;
@@ -37,7 +37,7 @@ public class MyRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         //获取用户名
         String username = authenticationToken.getPrincipal().toString();
-        T_user user = t_userDao.findUserByUsername(username);
+        T_user user = t_userMapper.findUserByUsername(username);
         if(user != null){
             AuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(user.getUserName(), user.getPassword(), "c");
             return  authenticationInfo;

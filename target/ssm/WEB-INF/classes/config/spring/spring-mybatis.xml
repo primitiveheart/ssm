@@ -61,7 +61,7 @@
 
     <!--dao接口所在的包-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.zgb.dao"/>
+        <property name="basePackage" value="com.zgb.mapper"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 
