@@ -36,3 +36,17 @@ CREATE TABLE `t_user` (
   KEY `roleId` (`roleId`) USING BTREE,
   CONSTRAINT `t_user_ibfk_1` FOREIGN KEY (`roleId`) REFERENCES `t_role` (`id`)
 ) ENGINE=myisam DEFAULT CHARSET=utf8;
+
+
+CREATE  TABLE `onair_vms_library`(
+  `id` varchar(40) NOT NULL PRIMARY KEY ,
+  `pid` VARCHAR(40),
+  `name` VARCHAR(40),
+  `create_time` TIMESTAMP ,
+  `updata_time` TIMESTAMP ,
+  `is_delete` int(1),
+  `update_user` VARCHAR(30),
+  `create_user` VARCHAR(30),
+  `level_id` int(2),
+  `order_id` int(11)
+);
