@@ -2,6 +2,7 @@ package com.zgb.mapper;
 
 import com.zgb.entity.T_user;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -13,4 +14,6 @@ public interface T_userMapper {
     Set<String> findRoles(String userName);
 
     Set<String> findPermissions(String userName);
+
+    List<T_user> findAllUsers();
 }
